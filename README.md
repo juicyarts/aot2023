@@ -1,6 +1,6 @@
 # Advent of Typescript 2023
 
-Advent of Typescript in Local setup. All challenges can be found at Typescript Advent of Code 2020 [here](https://typehero.dev/aot-2023). Why tho you ask? Cause ain't nothing more comfy than your own ide and setup.
+Advent of Typescript in Local setup. All challenges can be found at Typescript Advent of Code 2023 [here](https://typehero.dev/aot-2023). Why tho you ask? Cause ain't nothing more comfy than your own ide and setup.
 
 This also serves as a playgound for bun and biome.
 
