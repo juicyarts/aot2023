@@ -19,7 +19,7 @@ bun check
 Run Biome:
 
 ```bash
-bun run lint
+bun lint
 ```
 
 Nothing to run since we are only observing types here.
