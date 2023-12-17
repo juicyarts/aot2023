@@ -1,18 +1,18 @@
-import { Equal, Expect } from "./utils/testing";
+import { Equal, Expect } from './utils/testing'
 
 type DayCounter<
 	T,
 	K extends number,
 	Result extends any[] = [T],
-> = Result["length"] extends K
+> = Result['length'] extends K
 	? [...Result, K][number]
-	: DayCounter<T, K, [...Result, Result["length"]]>;
+	: DayCounter<T, K, [...Result, Result['length']]>
 
-type TwelveDaysOfChristmas = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-type test_0_actual = DayCounter<1, 12>;
+type TwelveDaysOfChristmas = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+type test_0_actual = DayCounter<1, 12>
 
-type test_0_expected = TwelveDaysOfChristmas;
-type test_0 = Expect<Equal<test_0_expected, test_0_actual>>;
+type test_0_expected = TwelveDaysOfChristmas
+type test_0 = Expect<Equal<test_0_expected, test_0_actual>>
 
 type DaysUntilChristmas =
 	| 1
@@ -39,8 +39,8 @@ type DaysUntilChristmas =
 	| 22
 	| 23
 	| 24
-	| 25;
-type test_1_actual = DayCounter<1, 25>;
+	| 25
+type test_1_actual = DayCounter<1, 25>
 
-type test_1_expected = DaysUntilChristmas;
-type test_1 = Expect<Equal<test_1_expected, test_1_actual>>;
+type test_1_expected = DaysUntilChristmas
+type test_1 = Expect<Equal<test_1_expected, test_1_actual>>
