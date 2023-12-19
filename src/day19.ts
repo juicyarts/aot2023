@@ -10,6 +10,10 @@ import { Equal, Expect } from './utils/testing'
 const Heystack = ['🛹', '🚲', '🛴', '🏄'] as const
 type HeystackMap<T extends number> = (typeof Heystack)[T]
 
+/**
+ * This type allows to create an array of a certain length with a certain value
+ * This allows us to select n times an entry from the Heystack and create an array out of it
+ */
 type Times<
 	Amount extends number,
 	Key extends number,
@@ -19,6 +23,20 @@ type Times<
 	? FinalArray
 	: Times<Amount, Key, [...Iterator, 0], [...FinalArray, HeystackMap<Key>]>
 
+/**
+ * This type allows us to collect Items from the Heystack
+ *
+ * The Input array determines how many items we want to have from the Heystack, where the index of the item
+ * determines which item in the Heystack we want, and the value determines how many of the item we want
+ *
+ * The HeystackIterator keeps track of the times we have cycled through the heystack already to restart from 0 when we have
+ * reached the end of the Heystack while having more entries in Input
+ *
+ * The CycleIterator keeps track of the times we have cycled through the Input already to make sure we have an "end" condition
+ * when we have run Rebuild for the same amount of times as there are entries in Input
+ *
+ * The Output array is the result of the Rebuild function containing the items from the Heystack according to the amounts set per input
+ */
 type Rebuild<
 	Input extends readonly number[],
 	HeystackIterator extends any[] = [],
