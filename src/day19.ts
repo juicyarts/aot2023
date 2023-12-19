@@ -3,9 +3,6 @@ import { Equal, Expect } from './utils/testing'
 // This all looks wildly complex, i guess there might be an easier way?
 // * we could change the Heystack to be a union type for easier access?
 // * maybe the "Times" type is not necessary and there is a built in way of handling this with less code?
-// * the Rebuild type has two iterators to memoize the amount of Iterations absolved
-//    + the amount of times the Heystack has been cycled through to restart from 0 if we reach the end of the Heystack
-//    maybe there is a way to reduce this to be only one iterator?
 
 const Heystack = ['🛹', '🚲', '🛴', '🏄'] as const
 type HeystackMap<T extends number> = (typeof Heystack)[T]
@@ -32,25 +29,20 @@ type Times<
  * The HeystackIterator keeps track of the times we have cycled through the heystack already to restart from 0 when we have
  * reached the end of the Heystack while having more entries in Input
  *
- * The CycleIterator keeps track of the times we have cycled through the Input already to make sure we have an "end" condition
- * when we have run Rebuild for the same amount of times as there are entries in Input
- *
  * The Output array is the result of the Rebuild function containing the items from the Heystack according to the amounts set per input
  */
 type Rebuild<
 	Input extends readonly number[],
 	HeystackIterator extends any[] = [],
-	CycleIterator extends any[] = [],
 	Output extends any[] = [],
 > = Input extends [infer Needle extends number, ...infer Rest extends number[]]
-	? CycleIterator['length'] extends Input['length']
+	? Input['length'] extends 0
 		? Output
 		: HeystackIterator['length'] extends (typeof Heystack)['length']
-		  ? Rebuild<Input, [], CycleIterator, Output>
+		  ? Rebuild<Input, [], Output>
 		  : Rebuild<
 					Rest,
 					[...HeystackIterator, 0],
-					[...CycleIterator, 0],
 					[...Output, ...Times<Needle, HeystackIterator['length']>]
 			  >
 	: Output
