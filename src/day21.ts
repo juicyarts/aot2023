@@ -81,7 +81,7 @@ type IsOccupied<
 // ... 1.. .1. ..1 1.. ..1 111 ... ...
 // ... 1.. .1. ..1 .1. .1. ... 111 ...
 // ... 1.. .1. ..1 ..1 1.. ... ... 111
-// too lazy for logic, so this is rahter a static approach here
+// too lazy for logic, so this is rather a static approach here
 type HorizontalWinA = [[0, 0], [0, 1], [0, 2]];
 type HorizontalWinB = [[1, 0], [1, 1], [1, 2]];
 type HorizontalWinC = [[2, 0], [2, 1], [2, 2]];
